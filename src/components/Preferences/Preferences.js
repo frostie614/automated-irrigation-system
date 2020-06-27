@@ -75,7 +75,7 @@ const Preferences = props => {
     <h3 sx={{ color: "text" }}>
       <div className="preference">
         <h3>Irrigation time [s]:</h3>
-        <input sx={{ color: "text", borderColor: preferenceBorderColor("irrigationTimeInSeconds") }} type="number"
+        <input sx={{ color: "text", borderColor: preferenceBorderColor("irrigationTimeInSeconds") }} type="number" min="0"
           onChange={
             (e) => setPreferences({ ...preferences, irrigationTimeInSeconds: parseInt(e.target.value) })
           }
@@ -83,19 +83,19 @@ const Preferences = props => {
       </div>
       <div className="preference">
         <h3>Minimum irrigation time interval [min]:</h3>
-        <input sx={{ color: "text", borderColor: preferenceBorderColor("minIrrigationIntervalInMinutes") }} type="number"
+        <input sx={{ color: "text", borderColor: preferenceBorderColor("minIrrigationIntervalInMinutes") }} type="number" min="0"
           onChange={(e) => setPreferences({ ...preferences, minIrrigationIntervalInMinutes: parseInt(e.target.value) })}
           value={preferences.minIrrigationIntervalInMinutes} />
       </div>
       <div className="preference">
         <h3>Minimum soil moisture:</h3>
-        <input sx={{ color: "text", borderColor: preferenceBorderColor("capacityBuffer") }} type="number"
+        <input sx={{ color: "text", borderColor: preferenceBorderColor("capacityBuffer") }} type="number" min="0"
           onChange={(e) => setPreferences({ ...preferences, capacityBuffer: parseInt(e.target.value) })}
           value={preferences.capacityBuffer} />
       </div>
       <div className="preference">
         <h3>Signal Pin:</h3>
-        <input sx={{ color: "text", borderColor: preferenceBorderColor("signalPin") }} type="number"
+        <input sx={{ color: "text", borderColor: preferenceBorderColor("signalPin") }} type="number" min="0"
           onChange={(e) => setPreferences({ ...preferences, signalPin: parseInt(e.target.value) })}
           value={preferences.signalPin} />
       </div>
