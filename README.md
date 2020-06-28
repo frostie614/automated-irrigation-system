@@ -62,6 +62,26 @@ Before you upload the program you have to set your wifi password, wifi name (ssi
 
 If the Arduino IDE is successfully configured for the NodeMCU, you can upload the program you find in this repository under [arduino-code/ESP8266_moisture/ESP8266_moisture.ino](https://github.com/PatrickHallek/automated-irrigation-system/blob/master/arduino-code/ESP8622_moisture.ino/ESP8622_moisture.ino.ino) to the NodeMCU.
 
+<a name="project-installation"></a>
+## **Installing the Project**
+
+**NB:** you may need to install git first. On the raspberry pi, run
+
+```bash
+sudo apt install git
+```
+
+Download the project from this repository with the following command and go in the project directory:
+
+```bash
+git clone https://github.com/PatrickHallek/automated-irrigation-system
+cd automated-irrigation-system
+```
+
+From here, you have two options:
+
+- [Using docker on the pi (recommended)](#raspi-docker)
+- [Manually setup with the pi](#raspi-manually)
 
 <a name="raspi-docker"></a>
 ## Setup the Raspberry Pi with [Docker](https://www.docker.com/) (recommended)
@@ -80,7 +100,7 @@ sudo pip3 install docker-compose
 Now you have to pass the ip address of your pi into the `REACT_APP_BACKEND_URL=http://<YOUR-RASPI-IP>:3000` environment variable in the docker-compose file:
 
 ```bash
-sudo nano docker-compose
+sudo nano docker-compose.yml
 ```
 
 You can find the ip with the command `ifconfig`. It should be something like *192.168.178.44*. You can save your input in the Nano editor with `ctr + x`, then type in `yes`, finally exit with `enter`.
@@ -143,15 +163,8 @@ That the installation has worked can be checked with the command below:
 mongo
 ```
 
-<a name="project-installation"></a>
-### **Installing the Project**
-
-Download the project from this repository with the following command and go in the project directory:
-
-```bash
-git clone https://github.com/PatrickHallek/automated-irrigation-system
-cd automated-irrigation-system
-```
+<a name="manual-project-setup"></a>
+### **Setup**
 
 After downloading the project you have to create environment files for the frontend and backend with the following commands:
 
@@ -160,6 +173,7 @@ sudo nano .env
 ```
 If you are in nano edit mode, copy the following text into it and type in your raspi ip. You can find the ip with the command `ifconfig`. It should be something like *192.168.178.44*
 ```nano
+# .env
 SKIP_PREFLIGHT_CHECK=true
 PORT=4200
 REACT_APP_BACKEND_URL="http://<YOUR-RASPI-IP>:3000"
@@ -172,6 +186,7 @@ sudo nano backend/.env
 ```
 Copy the following line into the editor in order to set the database connection:
 ```
+# backend/.env
 MONGO_DB="mongodb://localhost/irrigation"
 ```
 
